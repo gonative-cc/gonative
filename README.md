@@ -24,6 +24,12 @@ Native is transforming Bitcoin into a programmable, decentralized finance powerh
 
 ## Setup
 
+### Build
+
+```shell
+make build
+```
+
 - [libwasmvm notes](https://github.com/gonative-cc/network-docs/blob/master/validator.md#libwasmvm)
 
 ### Recommended Database Backend
