@@ -1,0 +1,62 @@
+ignoreGeneratedHeader = false
+severity = "error"
+confidence = 0.8
+errorCode = 2
+warningCode = 1
+
+[rule.blank-imports]
+[rule.context-as-argument]
+[rule.context-keys-type]
+[rule.dot-imports]
+[rule.error-return]
+[rule.error-strings]
+[rule.error-naming]
+[rule.exported]
+[rule.increment-decrement]
+[rule.var-naming]
+[rule.var-declaration]
+#[rule.package-comments]
+[rule.range]
+[rule.receiver-naming]
+[rule.time-naming]
+[rule.unexported-return]
+[rule.indent-error-flow]
+[rule.errorf]
+[rule.empty-block]
+[rule.superfluous-else]
+[rule.unused-parameter]
+[rule.unreachable-code]
+[rule.redefines-builtin-id]
+
+# Custom #
+
+[rule.if-return]
+[rule.early-return]
+[rule.identical-branches]
+[rule.unconditional-recursion]
+[rule.confusing-results]
+[rule.duplicated-imports]
+[rule.unnecessary-stmt]
+
+[rule.atomic]
+[rule.bool-literal-in-expr]
+[rule.datarace]
+
+[rule.range-val-address]
+[rule.range-val-in-closure]
+[rule.string-of-int]
+[rule.struct-tag]
+[rule.time-equal]
+[rule.waitgroup-by-value]
+[rule.defer]
+
+# [rule.add-constant]
+
+[rule.argument-limit]
+    Arguments = [6]
+[rule.cyclomatic]
+    Arguments = [10]
+[rule.function-result-limit]
+    Arguments = [3]
+[rule.max-control-nesting]
+    Arguments = [4]
