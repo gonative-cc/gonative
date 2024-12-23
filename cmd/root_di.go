@@ -65,7 +65,7 @@ func NewRootCmd[T transaction.Tx](
 	var (
 		moduleManager   *runtime.MM[T]
 		clientCtx       client.Context
-		a          *app.App[T]
+		a               *app.App[T]
 		depinjectConfig = depinject.Configs(
 			depinject.Supply(logger, runtime.GlobalConfig(configMap)),
 			depinject.Provide(ProvideClientContext),
@@ -94,7 +94,7 @@ func NewRootCmd[T transaction.Tx](
 		GlobalConfig:  configMap,
 		TxConfig:      clientCtx.TxConfig,
 		ModuleManager: moduleManager,
-		App:        a,
+		App:           a,
 		ClientContext: clientCtx,
 	}
 	rootCommand = &cobra.Command{

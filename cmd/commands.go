@@ -47,7 +47,7 @@ type CommandDependencies[T transaction.Tx] struct {
 	GlobalConfig  coreserver.ConfigMap
 	TxConfig      client.TxConfig
 	ModuleManager *runtimev2.MM[T]
-	App        *app.App[T]
+	App           *app.App[T]
 	// could generally be more generic with serverv2.ServerComponent[T]
 	// however, we want to register extra grpc handlers
 	ConsensusServer *cometbft.CometBFTServer[T]
@@ -95,7 +95,6 @@ func InitRootCmd[T transaction.Tx](
 			&grpcgateway.Server[T]{},
 		)
 	}
-
 
 	// store component (not a server)
 	storeComponent, err := serverstore.New[T](deps.App.Store(), deps.GlobalConfig)
