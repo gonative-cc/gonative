@@ -29,7 +29,6 @@ BUILD_FLAGS := -ldflags '$(ldflags)'
 build: out .git/hooks/pre-commit
 	@echo "--> ensure dependencies have not been modified"
 	@go mod verify
-	@echo "--> installing $(APPNAME)d"
 #	go build -o ./out ./cmd/*
 	go build $(BUILD_FLAGS) -mod=readonly -o ./out
 
@@ -47,15 +46,13 @@ clean:
 lint-git:
 	@files=$$(git diff --name-only --cached | grep  -E '\.go$$' | xargs -r gofmt -l); if [ -n "$$files" ]; then echo $$files;  exit 101; fi
 	@git diff --name-only --cached | grep  -E '\.go$$' | xargs -r revive
-# TODO use set for go vet
-	@git diff --name-only --cached | grep  -E '\.go$$' | xargs -r go vet
+	@go vet ./...
 	@git diff --name-only --cached | grep  -E '\.md$$' | xargs -r markdownlint-cli2
 
 # lint changed files
 lint:
 	@files=$$(git diff --name-only | grep  -E '\.go$$' | xargs -r gofmt -l); if [ -n "$$files" ]; then echo $$files;  exit 101; fi
 	@git diff --name-only | grep  -E '\.go$$' | xargs -r revive
-	@git diff --name-only | grep  -E '\.go$$' | xargs -r go vet
 	@git diff --name-only | grep  -E '\.md$$' | xargs -r markdownlint-cli2
 
 lint-all: lint-fix-go-all
@@ -66,6 +63,8 @@ lint-fix-all: lint-fix-go-all
 lint-fix-go-all:
 	@gofmt -w -s -l .
 
+govet:
+	@go vet ./...
 
 .PHONY: lint lint-all lint-fix-all lint-fix-go-all
 
