@@ -1,5 +1,5 @@
 
-setup:
+setup-hooks:
 	@cd .git/hooks; ln -s -f ../../scripts/git-hooks/* ./
 
 out:
