@@ -54,6 +54,7 @@ type CommandDependencies[T transaction.Tx] struct {
 	ClientContext   client.Context
 }
 
+// InitRootCmd adds sub-commands to the root command.
 func InitRootCmd[T transaction.Tx](
 	rootCmd *cobra.Command,
 	logger log.Logger,
@@ -238,6 +239,9 @@ func txCommand() *cobra.Command {
 	return cmd
 }
 
+// RootCommandPersistentPreRun initializes the root command state
+//
+//revive:disable:unused-parameter copied from cosmos-sdk
 func RootCommandPersistentPreRun(clientCtx client.Context) func(*cobra.Command, []string) error {
 	return func(cmd *cobra.Command, args []string) error {
 		// set the default command outputs
@@ -257,11 +261,7 @@ func RootCommandPersistentPreRun(clientCtx client.Context) func(*cobra.Command, 
 			return err
 		}
 
-		if err = client.SetCmdClientContextHandler(clientCtx, cmd); err != nil {
-			return err
-		}
-
-		return nil
+		return client.SetCmdClientContextHandler(clientCtx, cmd)
 	}
 }
 

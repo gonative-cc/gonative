@@ -14,6 +14,8 @@ import (
 // This is a demonstation of how to export a genesis file. Export may need extended at
 // the user discretion for cleaning the genesis state at the end provided with jailAllowedAddrs
 // Same applies for forZeroHeight preprocessing.
+//
+//revive:disable:unused-parameter copied from cosmos-sdk
 func (app *App[T]) ExportAppStateAndValidators(
 	forZeroHeight bool,
 	jailAllowedAddrs []string,

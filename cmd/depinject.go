@@ -18,6 +18,8 @@ import (
 )
 
 // ProvideClientContext is a depinject Provider function which assembles and returns a client.Context.
+//
+//revive:disable:argument-limit copied from cosmos-sdk
 func ProvideClientContext(
 	configMap runtime.GlobalConfig,
 	appCodec codec.Codec,

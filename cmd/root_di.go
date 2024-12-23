@@ -20,6 +20,9 @@ import (
 	"github.com/gonative-cc/gonative/app"
 )
 
+// NewRootCmd creates a root command
+//
+//revive:disable:cyclomatic mostly copied from cosmos-sdk
 func NewRootCmd[T transaction.Tx](
 	args ...string,
 ) (*cobra.Command, error) {
@@ -44,7 +47,7 @@ func NewRootCmd[T transaction.Tx](
 	autoCLIModuleOpts := make(map[string]*autocliv1.ModuleOptions)
 	autoCLIModuleOpts[nodeCmds.Name()] = nodeCmds.AutoCLIOptions()
 	autoCliOpts, err := autocli.NewAppOptionsFromConfig(
-		depinject.Configs(app.AppConfig(), depinject.Supply(runtime.GlobalConfig{})),
+		depinject.Configs(app.Config(), depinject.Supply(runtime.GlobalConfig{})),
 		autoCLIModuleOpts,
 	)
 	if err != nil {
@@ -81,7 +84,7 @@ func NewRootCmd[T transaction.Tx](
 		// client construction
 		if err = depinject.Inject(
 			depinject.Configs(
-				app.AppConfig(),
+				app.Config(),
 				depinjectConfig,
 			),
 			&autoCliOpts, &moduleManager, &clientCtx,

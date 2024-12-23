@@ -110,6 +110,7 @@ func NewTestApp(t *testing.T) (*App[transaction.Tx], context.Context) {
 	return app, ctx
 }
 
+//revive:disable:context-as-argument copied from cosmos-sdk
 func MoveNextBlock(t *testing.T, app *App[transaction.Tx], ctx context.Context) {
 	t.Helper()
 

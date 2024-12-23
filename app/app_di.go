@@ -1,7 +1,7 @@
 package app
 
 import (
-	_ "embed"
+	_ "embed" // needed for cosmos-sdk/client/docs/embed.go
 	"fmt"
 
 	_ "github.com/jackc/pgx/v5/stdlib" // Import and register pgx driver
@@ -27,7 +27,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/cosmos-sdk/std"
-	_ "github.com/cosmos/cosmos-sdk/x/genutil"
+	_ "github.com/cosmos/cosmos-sdk/x/genutil" // genutil effects
 )
 
 // App extends an ABCI application, but with most of its parameters exported.
@@ -47,8 +47,8 @@ type App[T transaction.Tx] struct {
 	StakingKeeper *stakingkeeper.Keeper
 }
 
-// AppConfig returns the default app config.
-func AppConfig() depinject.Config {
+// Config returns the default app config.
+func Config() depinject.Config {
 	return depinject.Configs(
 		appconfig.Compose(ModuleConfig), // Alternatively use appconfig.LoadYAML(AppConfigYAML)
 		runtime.DefaultServiceBindings(),
@@ -70,6 +70,7 @@ func AppConfig() depinject.Config {
 	)
 }
 
+// NewApp is an App constructor
 func NewApp[T transaction.Tx](
 	config depinject.Config,
 	outputs ...any,
@@ -82,7 +83,7 @@ func NewApp[T transaction.Tx](
 
 		// merge the AppConfig and other configuration in one config
 		appConfig = depinject.Configs(
-			AppConfig(),
+			Config(),
 			config,
 			depinject.Supply(
 			// ADVANCED CONFIGURATION
@@ -219,6 +220,7 @@ func (app *App[T]) Close() error {
 	return app.App.Close()
 }
 
+// ProvideRootStoreConfig deep inject provider for a store
 func ProvideRootStoreConfig(config runtime.GlobalConfig) (*root.Config, error) {
 	return serverstore.UnmarshalConfig(config)
 }

@@ -1,3 +1,5 @@
+//revive:disable:argument-limit copied from cosmos-sdk
+
 package cmd
 
 import (
@@ -77,7 +79,7 @@ func addTestnetFlagsToCmd(cmd *cobra.Command) {
 	cmd.Flags().String(flags.FlagKeyType, string(hd.Secp256k1Type), "Key signing algorithm to generate keys for")
 
 	// support old flags name for backwards compatibility
-	cmd.Flags().SetNormalizeFunc(func(f *pflag.FlagSet, name string) pflag.NormalizedName {
+	cmd.Flags().SetNormalizeFunc(func(_ *pflag.FlagSet, name string) pflag.NormalizedName {
 		if name == flags.FlagKeyAlgorithm {
 			name = flags.FlagKeyType
 		}
@@ -164,6 +166,8 @@ Example:
 const nodeDirPerm = 0o755
 
 // initTestnetFiles initializes testnet files for a testnet to be run in a separate process
+//
+//revive:disable:cyclomatic copied from cosmos-sdk
 func initTestnetFiles[T transaction.Tx](
 	clientCtx client.Context,
 	cmd *cobra.Command,

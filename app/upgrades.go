@@ -20,6 +20,7 @@ import (
 // v0.50.x to v2.
 const UpgradeName = "v050-to-v2"
 
+// RegisterUpgradeHandlers for x/gov proposals
 func (app *App[T]) RegisterUpgradeHandlers() {
 	app.UpgradeKeeper.SetUpgradeHandler(
 		UpgradeName,
