@@ -178,7 +178,7 @@ func InitRootCmd[T transaction.Tx](
 	)
 }
 
-// genesisCommand builds genesis-related `simd genesis` command.
+// genesisCommand builds genesis-related `gonative genesis` command.
 func genesisCommand[T transaction.Tx](
 	moduleManager *runtimev2.MM[T],
 	app *app.App[T],

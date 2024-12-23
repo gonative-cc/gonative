@@ -27,7 +27,8 @@ func NewRootCmd[T transaction.Tx](
 	args ...string,
 ) (*cobra.Command, error) {
 	rootCommand := &cobra.Command{
-		Use:           "simdv2",
+		Use:           "gonative",
+		Short:         "Native Node Application",
 		SilenceErrors: true,
 	}
 	configWriter, err := InitRootCmd(rootCommand, log.NewNopLogger(), CommandDependencies[T]{})
@@ -101,8 +102,8 @@ func NewRootCmd[T transaction.Tx](
 		ClientContext: clientCtx,
 	}
 	rootCommand = &cobra.Command{
-		Use:               "gonative",
-		Short:             "Native Node Application",
+		Use:               rootCommand.Use,
+		Short:             rootCommand.Short,
 		SilenceErrors:     true,
 		PersistentPreRunE: RootCommandPersistentPreRun(clientCtx),
 	}
