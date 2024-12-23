@@ -47,12 +47,15 @@ clean:
 lint-git:
 	@files=$$(git diff --name-only --cached | grep  -E '\.go$$' | xargs -r gofmt -l); if [ -n "$$files" ]; then echo $$files;  exit 101; fi
 	@git diff --name-only --cached | grep  -E '\.go$$' | xargs -r revive
+# TODO use set for go vet
+	@git diff --name-only --cached | grep  -E '\.go$$' | xargs -r go vet
 	@git diff --name-only --cached | grep  -E '\.md$$' | xargs -r markdownlint-cli2
 
 # lint changed files
 lint:
 	@files=$$(git diff --name-only | grep  -E '\.go$$' | xargs -r gofmt -l); if [ -n "$$files" ]; then echo $$files;  exit 101; fi
 	@git diff --name-only | grep  -E '\.go$$' | xargs -r revive
+	@git diff --name-only | grep  -E '\.go$$' | xargs -r go vet
 	@git diff --name-only | grep  -E '\.md$$' | xargs -r markdownlint-cli2
 
 lint-all: lint-fix-go-all
