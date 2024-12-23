@@ -14,14 +14,9 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Go workspace file
-go.work
-go.work.sum
-
 # env file
 .env
 
 # binaries
 out
-
-contrib/bitcoind-data
+gonative
