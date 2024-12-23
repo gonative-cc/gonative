@@ -5,13 +5,43 @@ setup-hooks:
 out:
 	mkdir out
 
-.git/hooks/pre-commit: setup
+.git/hooks/pre-commit: setup-hooks
+
+.PHONY: setup-hooks
+
+
+#############################
+##          Build          ##
+#############################
+
+BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+COMMIT := $(shell git log -1 --format='%H')
+APPNAME := gonative
+
+# Update the ldflags with the app, client & server names
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=$(APPNAME) \
+	-X github.com/cosmos/cosmos-sdk/version.AppName=$(APPNAME)d \
+	-X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
+	-X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT)
+
+BUILD_FLAGS := -ldflags '$(ldflags)'
 
 build: out .git/hooks/pre-commit
-	go build -o ./out ./cmd/*
+	@echo "--> ensure dependencies have not been modified"
+	@go mod verify
+	@echo "--> installing $(APPNAME)d"
+#	go build -o ./out ./cmd/*
+	go build $(BUILD_FLAGS) -mod=readonly -o ./out
 
 clean:
 	rm -rf out
+
+.PHONY: build clean
+
+#############################
+##          Lint           ##
+#############################
+
 
 # used as pre-commit
 lint-git:
@@ -34,12 +64,12 @@ lint-fix-go-all:
 	@gofmt -w -s -l .
 
 
-.PHONY: build clean setup
 .PHONY: lint lint-all lint-fix-all lint-fix-go-all
 
-###############################################################################
-##                                   Tests                                   ##
-###############################################################################
+
+#############################
+##          Tests          ##
+#############################
 
 TEST_COVERAGE_PROFILE=coverage.txt
 TEST_TARGETS := test-unit test-unit-cover test-race
@@ -59,15 +89,3 @@ cover-html: test-unit-cover
 	@echo "--> Opening in the browser"
 	@go tool cover -html=$(TEST_COVERAGE_PROFILE)
 
-###############################################################################
-##                                Infrastructure                             ##
-###############################################################################
-
-WALLET="nativewallet"
-
-bitcoind-init:
-	@rm -rf ./contrib/bitcoind-data
-	@cp -rf ./contrib/bitcoind-snapshot contrib/bitcoind-data
-
-bitcoind-load-wallet:
-	@docker exec -it bitcoind-node bitcoin-cli -regtest loadwallet $(WALLET)
