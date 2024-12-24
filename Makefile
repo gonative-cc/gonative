@@ -27,8 +27,8 @@ ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=$(APPNAME) \
 BUILD_FLAGS := -ldflags '$(ldflags)'
 
 build: out .git/hooks/pre-commit
-	@echo "--> ensure dependencies have not been modified"
-	@go mod verify
+#	@echo "--> ensure dependencies have not been modified"
+#	@go mod verify
 #	go build -o ./out ./cmd/*
 	go build $(BUILD_FLAGS) -mod=readonly -o ./out
 

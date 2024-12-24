@@ -4,6 +4,8 @@ package app
 import (
 	"time"
 
+	_ "github.com/gonative-cc/gonative/app/appparams" // used to set default sdk globals
+
 	"google.golang.org/protobuf/types/known/durationpb"
 
 	accountsmodulev1 "cosmossdk.io/api/cosmos/accounts/module/v1"

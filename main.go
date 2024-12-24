@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 
+	_ "github.com/gonative-cc/gonative/app/appparams" // used to set default sdk globals
+
 	"cosmossdk.io/core/transaction"
 
 	"github.com/gonative-cc/gonative/cmd"
