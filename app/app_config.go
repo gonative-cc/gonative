@@ -5,6 +5,7 @@ import (
 	"time"
 
 	_ "github.com/gonative-cc/gonative/app/appparams" // used to set default sdk globals
+	"github.com/gonative-cc/gonative/app/overwrite"
 
 	"google.golang.org/protobuf/types/known/durationpb"
 
@@ -298,3 +299,7 @@ var (
 		},
 	}
 )
+
+func init() {
+	overwrite.RegisterModules()
+}
