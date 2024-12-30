@@ -20,3 +20,11 @@
 # binaries
 out
 gonative
+
+
+# JavaScript
+node_modules
+
+
+# Python
+*.egg-info
