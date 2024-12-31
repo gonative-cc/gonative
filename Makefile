@@ -18,31 +18,34 @@ BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 VERSION := $(shell echo $(shell git describe --tags --always --match "v*") | sed 's/^v//')
 COMMIT := $(shell git log -1 --format='%H')
 APPNAME := gonative
-LEDGER_ENABLED ?= true
-
+LEDGER_ENABLED ?= false
 
 # process build tags
 build_tags = netgo
+
+build-with-rocksdb: COSMOS_BUILD_OPTIONS += rocksdb
+	COSMOS_BUILD_OPTIONS += rocksdb
+
 ifeq ($(LEDGER_ENABLED),true)
 	ifeq ($(OS),Windows_NT)
-	GCCEXE = $(shell where gcc.exe 2> NUL)
-	ifeq ($(GCCEXE),)
-		$(error gcc.exe not installed for ledger support, please install or set LEDGER_ENABLED=false)
-	else
-		build_tags += ledger
-	endif
-	else
-	UNAME_S = $(shell uname -s)
-	ifeq ($(UNAME_S),OpenBSD)
-		$(warning OpenBSD detected, disabling ledger support (https://github.com/cosmos/cosmos-sdk/issues/1988))
-	else
-		GCC = $(shell command -v gcc 2> /dev/null)
-		ifeq ($(GCC),)
-			$(error gcc not installed for ledger support, please install or set LEDGER_ENABLED=false)
+		GCCEXE = $(shell where gcc.exe 2> NUL)
+		ifeq ($(GCCEXE),)
+			$(error gcc.exe not installed for ledger support, please install or set LEDGER_ENABLED=false)
 		else
 			build_tags += ledger
 		endif
-	endif
+	else
+		UNAME_S = $(shell uname -s)
+		ifeq ($(UNAME_S),OpenBSD)
+			$(warning OpenBSD detected, disabling ledger support (https://github.com/cosmos/cosmos-sdk/issues/1988))
+		else
+			GCC = $(shell command -v gcc 2> /dev/null)
+			ifeq ($(GCC),)
+				$(error gcc not installed for ledger support, please install or set LEDGER_ENABLED=false)
+			else
+				build_tags += ledger
+			endif
+		endif
 	endif
 endif
 
@@ -82,13 +85,11 @@ ifeq (,$(findstring nostrip,$(COSMOS_BUILD_OPTIONS)))
   BUILD_FLAGS += -trimpath
 endif
 
-build: out .git/hooks/pre-commit
+build build-with-rocksdb: out .git/hooks/pre-commit
 #	@echo "--> ensure dependencies have not been modified"
 #	@go mod verify
 	go build $(BUILD_FLAGS) -mod=readonly -o ./out
 
-build-with-rocksdb:
-	COSMOS_BUILD_OPTIONS=rocksdb make build
 
 clean:
 	rm -rf out
