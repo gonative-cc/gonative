@@ -28,6 +28,7 @@ function updateGenesis(filename) {
 	a.staking.params.key_rotation_fee.denom = "untiv";
 	a.gov.params.voting_period = "600s"; // 10min
 	a.gov.params.expedited_voting_period = "60s";
+	a.gov.params.expedited_quorum = "0.51";
 	a.gov.params.min_deposit[0].amount = "1000000"; // 1NTIV
 	a.bank.denom_metadata = [ntivMetadata];
 
@@ -50,12 +51,12 @@ function updateAppConfig(filename, backup = false) {
 
 	const cfg = readToml(filename);
 	cfg.grpc.address = ":9090"; // localhost:
-	cfg["grpc-gateway"].address = ":1317";
+	cfg["grpc-gateway"].address = "localhost:1317";
 	// TODO: https://github.com/cosmos/cosmos-sdk/issues/23133
 	// cfg.store["app-db-backend"] = "pebbledb";
 	// cfg.store["app-db-backend"] = "rocks";
-	cfg.store.options["sc-pruning-option"]["keep-recent"] = blocks_per_hour * 2;
-	cfg.store.options["sc-pruning-option"].interval = blocks_per_hour * 3; // 0=disable prunning
+	cfg.store.options["sc-pruning-option"]["keep-recent"] = blocks_per_hour * 6;
+	cfg.store.options["sc-pruning-option"].interval = blocks_per_hour * 8; // 0=disable prunning
 	// not needed: cfg.server["minimum-gas-prices"] = "0.08untiv"; // NOTE: in mainnet we will use 0.08 probably
 
 	fs.writeFileSync(filename, toml.stringify(cfg));
@@ -67,9 +68,10 @@ function updateCometConfig(filename, backup = true) {
 	const cfg = readToml(filename);
 	// Use "tcp://127.0.0.1:26657" (default) to disable RPC access from the internet
 	cfg.rpc.laddr = "tcp://0.0.0.0:26657";
-	// TODO: must be enabled after starting a chain cfg.statesync.enable = true;
 	cfg.db_backend = "pebbledb";
 	cfg.log_level = "*:info";
+	// TODO: must be enabled after starting a chain
+	// cfg.statesync.enable = true;
 
 	fs.writeFileSync(filename, toml.stringify(cfg));
 }
