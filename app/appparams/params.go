@@ -16,7 +16,7 @@ const (
 	// DisplayDenom defines the name, symbol, and display value of the NTIV token.
 	DisplayDenom = "NTIV"
 
-	// Bech32 account display prefix
+	// Bech32Prefix account display prefix
 	Bech32Prefix = "native"
 )
 
