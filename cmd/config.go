@@ -56,7 +56,7 @@ gas-adjustment = {{ .GasConfig.GasAdjustment }}
 // Allow the chain developer to overwrite the server default app toml config.
 func initServerConfig() serverv2.ServerConfig {
 	serverCfg := serverv2.DefaultServerConfig()
-	serverCfg.MinGasPrices = "0.1untiv" // TODO
+	serverCfg.MinGasPrices = "0.08untiv"
 
 	return serverCfg
 }
