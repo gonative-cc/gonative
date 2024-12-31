@@ -56,7 +56,7 @@ function updateAppConfig(filename, backup = false) {
 	// cfg.store["app-db-backend"] = "rocks";
 	cfg.store.options["sc-pruning-option"]["keep-recent"] = blocks_per_hour * 2;
 	cfg.store.options["sc-pruning-option"].interval = blocks_per_hour * 3; // 0=disable prunning
-	// not needed: cfg.server["minimum-gas-prices"] = "0.08untiv";
+	// not needed: cfg.server["minimum-gas-prices"] = "0.08untiv"; // NOTE: in mainnet we will use 0.08 probably
 
 	fs.writeFileSync(filename, toml.stringify(cfg));
 }
