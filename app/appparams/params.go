@@ -15,10 +15,20 @@ const (
 	BondDenom = "untiv"
 	// DisplayDenom defines the name, symbol, and display value of the NTIV token.
 	DisplayDenom = "NTIV"
+
+	// Bech32 account display prefix
+	Bech32Prefix = "native"
 )
 
 func init() {
 	sdk.DefaultBondDenom = BondDenom
+
+	p := Bech32Prefix
+	c := sdk.GetConfig()
+	c.SetBech32PrefixForAccount(p, sdk.GetBech32PrefixAccPub(p))
+	c.SetBech32PrefixForValidator(sdk.GetBech32PrefixValAddr(p), sdk.GetBech32PrefixValPub(p))
+	c.SetBech32PrefixForConsensusNode(sdk.GetBech32PrefixConsAddr(p), sdk.GetBech32PrefixConsPub(p))
+	c.Seal()
 }
 
 // NtivTokenMetadata creates bank Metadata for the NTIV token

@@ -4,8 +4,8 @@ package app
 import (
 	"time"
 
-	_ "github.com/gonative-cc/gonative/app/appparams" // used to set default sdk globals
-	"github.com/gonative-cc/gonative/app/overwrite"
+	"github.com/gonative-cc/gonative/app/appparams" // used to set default sdk globals
+	// "github.com/gonative-cc/gonative/app/overwrite"
 
 	"google.golang.org/protobuf/types/known/durationpb"
 
@@ -77,8 +77,6 @@ import (
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	"github.com/cosmos/cosmos-sdk/x/validate"
 )
-
-const BechPrefix = "native"
 
 var (
 	// module account permissions
@@ -205,7 +203,7 @@ var (
 			{
 				Name: authtypes.ModuleName,
 				Config: appconfig.WrapAny(&authmodulev1.Module{
-					Bech32Prefix:             BechPrefix,
+					Bech32Prefix:             appparams.Bech32Prefix,
 					ModuleAccountPermissions: moduleAccPerms,
 					// By default modules authority is the governance module. This is configurable with the following:
 					// Authority: "group", // A custom module authority can be set using a module name
@@ -227,8 +225,8 @@ var (
 				Config: appconfig.WrapAny(&stakingmodulev1.Module{
 					// NOTE: specifying a prefix is only necessary when using bech32 addresses
 					// If not specified, the auth Bech32Prefix appended with "valoper" and "valcons" is used by default
-					Bech32PrefixValidator: BechPrefix + "valoper",
-					Bech32PrefixConsensus: BechPrefix + "valcons",
+					Bech32PrefixValidator: appparams.Bech32Prefix + "valoper",
+					Bech32PrefixConsensus: appparams.Bech32Prefix + "valcons",
 				}),
 			},
 			{
@@ -303,5 +301,5 @@ var (
 )
 
 func init() {
-	overwrite.RegisterModules()
+	// overwrite.RegisterModules()
 }
