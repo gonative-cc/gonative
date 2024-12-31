@@ -14,7 +14,7 @@ const ntivMetadata = {
 	],
 	base: "untiv",
 	display: "NTIV",
-	name: "NTIV",
+	name: "Native",
 	symbol: "NTIV",
 	uri: "",
 	uri_hash: "",

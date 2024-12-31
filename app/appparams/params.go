@@ -36,7 +36,7 @@ func NtivTokenMetadata() banktypes.Metadata {
 	return banktypes.Metadata{
 		Description: "The operational token of the Native blockchain.",
 		Base:        BondDenom, // NOTE: must not change
-		Name:        DisplayDenom,
+		Name:        "Native",
 		Display:     DisplayDenom,
 		Symbol:      DisplayDenom,
 		DenomUnits: []*banktypes.DenomUnit{
