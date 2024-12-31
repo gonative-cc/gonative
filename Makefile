@@ -23,9 +23,6 @@ LEDGER_ENABLED ?= false
 # process build tags
 build_tags = netgo
 
-build-with-rocksdb: COSMOS_BUILD_OPTIONS += rocksdb
-	COSMOS_BUILD_OPTIONS += rocksdb
-
 ifeq ($(LEDGER_ENABLED),true)
 	ifeq ($(OS),Windows_NT)
 		GCCEXE = $(shell where gcc.exe 2> NUL)
@@ -85,10 +82,14 @@ ifeq (,$(findstring nostrip,$(COSMOS_BUILD_OPTIONS)))
   BUILD_FLAGS += -trimpath
 endif
 
-build build-with-rocksdb: out .git/hooks/pre-commit
+build: out .git/hooks/pre-commit
 #	@echo "--> ensure dependencies have not been modified"
 #	@go mod verify
 	go build $(BUILD_FLAGS) -mod=readonly -o ./out
+
+build-with-rocksdb: COSMOS_BUILD_OPTIONS += ,rocksdb
+build-with-rocksdb:
+	COSMOS_BUILD_OPTIONS=$(COSMOS_BUILD_OPTIONS) $(MAKE) build
 
 
 clean:
