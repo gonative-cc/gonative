@@ -25,4 +25,6 @@ Change log entries are to be added to the Unreleased section and in one of the f
 
 ### Bug Fixes
 
-## v0.0.1 (YYYY-MM-DD)
+## v0.1.0 (2024-12-31)
+
+Initial release for testnet-1.
