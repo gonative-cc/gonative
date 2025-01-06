@@ -91,11 +91,13 @@ build-with-rocksdb: COSMOS_BUILD_OPTIONS += ,rocksdb
 build-with-rocksdb:
 	COSMOS_BUILD_OPTIONS=$(COSMOS_BUILD_OPTIONS) $(MAKE) build
 
+zip-release:
+	cd out; gzip -k gonative; mv gonative.gz gonative-v$(VERSION)-linux-amd64.gz
 
 clean:
 	rm -rf out
 
-.PHONY: build clean
+.PHONY: build build-with-rocksdb zip-release clean
 
 #############################
 ##          Lint           ##
@@ -126,7 +128,7 @@ lint-fix-go-all:
 govet:
 	@go vet ./...
 
-.PHONY: lint lint-all lint-fix-all lint-fix-go-all
+.PHONY: lint lint-all lint-fix-all lint-fix-go-all govet
 
 
 #############################
@@ -151,3 +153,4 @@ cover-html: test-unit-cover
 	@echo "--> Opening in the browser"
 	@go tool cover -html=$(TEST_COVERAGE_PROFILE)
 
+.PHONY: test-unit test-unit-cover test-race run-tests cover-html
