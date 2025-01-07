@@ -3,16 +3,16 @@ module github.com/gonative-cc/gonative
 go 1.23.4
 
 require (
-	cosmossdk.io/api v0.8.0-rc.3 // main
+	cosmossdk.io/api v0.8.0
 	cosmossdk.io/client/v2 v2.10.0-beta.1
 	cosmossdk.io/core v1.0.0 // main
 	cosmossdk.io/core/testing v0.0.1 // indirect; main
 	cosmossdk.io/depinject v1.1.0
 	cosmossdk.io/indexer/postgres v0.1.0
 	cosmossdk.io/log v1.5.0
-	cosmossdk.io/math v1.4.0
-	cosmossdk.io/runtime/v2 v2.0.0-20241219154748-69025c556666 // main
-	cosmossdk.io/server/v2 v2.0.0-beta.1 // main
+	cosmossdk.io/math v1.5.0
+	cosmossdk.io/runtime/v2 v2.0.0-20241219154748-69025c556666
+	cosmossdk.io/server/v2 v2.0.0-beta.1.0.20250106081242-884a7a51c3c3
 	cosmossdk.io/store/v2 v2.0.0-beta.1 // main
 	cosmossdk.io/x/accounts v0.2.0-rc.1
 	cosmossdk.io/x/accounts/defaults/base v0.2.0-rc.1
@@ -41,26 +41,26 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
-	google.golang.org/protobuf v1.36.0
+	google.golang.org/protobuf v1.36.1
 )
 
 require (
-	buf.build/gen/go/cometbft/cometbft/protocolbuffers/go v1.36.0-20241120201313-68e42a58b301.1 // indirect
-	buf.build/gen/go/cosmos/gogo-proto/protocolbuffers/go v1.36.0-20240130113600-88ef6483f90f.1 // indirect
+	buf.build/gen/go/cometbft/cometbft/protocolbuffers/go v1.36.1-20241120201313-68e42a58b301.1 // indirect
+	buf.build/gen/go/cosmos/gogo-proto/protocolbuffers/go v1.36.1-20240130113600-88ef6483f90f.1 // indirect
 	cloud.google.com/go v0.115.0 // indirect
 	cloud.google.com/go/auth v0.5.1 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.2 // indirect
 	cloud.google.com/go/compute/metadata v0.5.2 // indirect
 	cloud.google.com/go/iam v1.1.8 // indirect
 	cloud.google.com/go/storage v1.42.0 // indirect
-	cosmossdk.io/collections v1.0.0-rc.1 // indirect; main
+	cosmossdk.io/collections v1.0.0 // indirect
 	cosmossdk.io/errors v1.0.1 // indirect
 	cosmossdk.io/errors/v2 v2.0.0 // indirect
 	cosmossdk.io/schema v1.0.0 // indirect
 	cosmossdk.io/server/v2/appmanager v1.0.0-beta.1 // indirect; main
 	cosmossdk.io/server/v2/stf v1.0.0-beta.1 // indirect; main
 	cosmossdk.io/store v1.10.0-rc.1.0.20241218084712-ca559989da43 // indirect; main
-	cosmossdk.io/x/tx v1.0.0-alpha.3 // indirect; main
+	cosmossdk.io/x/tx v1.0.0 // indirect; main
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/99designs/go-keychain v0.0.0-20191008050251-8e49817e8af4 // indirect
 	github.com/99designs/keyring v1.2.2 // indirect
@@ -93,7 +93,7 @@ require (
 	github.com/cosmos/go-bip39 v1.0.0 // indirect
 	github.com/cosmos/gogogateway v1.2.0 // indirect
 	github.com/cosmos/gogoproto v1.7.0 // indirect
-	github.com/cosmos/iavl v1.3.4 // indirect
+	github.com/cosmos/iavl v1.3.5 // indirect
 	github.com/cosmos/ics23/go v0.11.0 // indirect
 	github.com/cosmos/ledger-cosmos-go v0.14.0 // indirect
 	github.com/danieljoos/wincred v1.2.1 // indirect
@@ -255,10 +255,7 @@ require (
 // replace (
 // 	<temporary replace>
 // )
-replace (
-	cosmossdk.io/core => cosmossdk.io/core v1.0.0-alpha.6 // main
-	github.com/cosmos/cosmos-sdk => github.com/cosmos/cosmos-sdk v0.52.0-rc.1
-)
+replace github.com/cosmos/cosmos-sdk => github.com/cosmos/cosmos-sdk v0.52.0-rc.1.0.20250106202622-c6327ea6e403
 
 // Below are the long-lived replace from cosmos-sdk
 replace (
