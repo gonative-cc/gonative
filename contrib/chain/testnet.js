@@ -52,9 +52,7 @@ function updateAppConfig(filename, backup = false) {
 	const cfg = readToml(filename);
 	cfg.grpc.address = ":9090"; // localhost:
 	cfg["grpc-gateway"].address = "localhost:1317";
-	// TODO: https://github.com/cosmos/cosmos-sdk/issues/23133
-	// cfg.store["app-db-backend"] = "pebbledb";
-	// cfg.store["app-db-backend"] = "rocks";
+	cfg.store["app-db-backend"] = "pebbledb";
 	cfg.store.options["sc-pruning-option"]["keep-recent"] = blocks_per_hour * 6;
 	cfg.store.options["sc-pruning-option"].interval = blocks_per_hour * 8; // 0=disable prunning
 	// not needed: cfg.server["minimum-gas-prices"] = "0.08untiv"; // NOTE: in mainnet we will use 0.08 probably

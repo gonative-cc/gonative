@@ -228,8 +228,8 @@ cosmossdk.io/server/v2/stf v1.0.0-beta.1 h1:s+nRgjhKVC08/qpr51eFVodLhyyQ9ASvJBan
 cosmossdk.io/server/v2/stf v1.0.0-beta.1/go.mod h1:nfjihbofEF2GGadkYSFmgy5tqrAnSrmGcXUDZmmWyi8=
 cosmossdk.io/store v1.10.0-rc.1.0.20241218084712-ca559989da43 h1:glZ6MpmD+5AhwJYV4jzx+rn7cgUB2owHgk9o+93luz0=
 cosmossdk.io/store v1.10.0-rc.1.0.20241218084712-ca559989da43/go.mod h1:XCWpgfueHSBY+B7Cf2Aq/CcsU+6XoFH+EmseCKglFrU=
-cosmossdk.io/store/v2 v2.0.0-beta.1 h1:p1fdZ9uNijhpXZXdqs0QS6NmXNDVPNyT4DHV4yQnF64=
-cosmossdk.io/store/v2 v2.0.0-beta.1/go.mod h1:qHQmf/9mnsXwo/Ypp2u2Zs6BmkYcx1R/Jrpyn9Ro13A=
+cosmossdk.io/store/v2 v2.0.0-beta.1.0.20250102174441-3d544c1ef378 h1:/1xF3BcmpuHSuSpfSTDSNFbI2O8C8/TqpVVOqy4ge7U=
+cosmossdk.io/store/v2 v2.0.0-beta.1.0.20250102174441-3d544c1ef378/go.mod h1:mXVOrgwXLqyDlIw8bnTwF+Exl2ltF9MbvfsPuG/4WYE=
 cosmossdk.io/tools/confix v0.1.2 h1:2hoM1oFCNisd0ltSAAZw2i4ponARPmlhuNu3yy0VwI4=
 cosmossdk.io/tools/confix v0.1.2/go.mod h1:7XfcbK9sC/KNgVGxgLM0BrFbVcR/+6Dg7MFfpx7duYo=
 cosmossdk.io/x/accounts v0.2.0-rc.1 h1:jeq/8F1DUaVMvKMCnrvdC02u4WVxq0UKaN6Yg7EX2Ic=

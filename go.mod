@@ -13,7 +13,7 @@ require (
 	cosmossdk.io/math v1.5.0
 	cosmossdk.io/runtime/v2 v2.0.0-20241219154748-69025c556666
 	cosmossdk.io/server/v2 v2.0.0-beta.1.0.20250106081242-884a7a51c3c3
-	cosmossdk.io/store/v2 v2.0.0-beta.1 // main
+	cosmossdk.io/store/v2 v2.0.0-beta.1.0.20250102174441-3d544c1ef378 // main
 	cosmossdk.io/x/accounts v0.2.0-rc.1
 	cosmossdk.io/x/accounts/defaults/base v0.2.0-rc.1
 	cosmossdk.io/x/accounts/defaults/lockup v0.2.0-rc.1
