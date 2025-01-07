@@ -50,11 +50,6 @@ ifeq (secp,$(findstring secp,$(COSMOS_BUILD_OPTIONS)))
   build_tags += libsecp256k1_sdk
 endif
 
-ifeq (rocksdb,$(findstring rocksdb,$(COSMOS_BUILD_OPTIONS)))
-  CGO_ENABLED=1
-  build_tags += rocksdb grocksdb_clean_link
-endif
-
 whitespace :=
 whitespace += $(whitespace)
 comma := ,
@@ -87,17 +82,13 @@ build: out .git/hooks/pre-commit
 #	@go mod verify
 	go build $(BUILD_FLAGS) -mod=readonly -o ./out
 
-build-with-rocksdb: COSMOS_BUILD_OPTIONS += ,rocksdb
-build-with-rocksdb:
-	COSMOS_BUILD_OPTIONS=$(COSMOS_BUILD_OPTIONS) $(MAKE) build
-
 zip-release:
 	cd out; gzip -k gonative; mv gonative.gz gonative-v$(VERSION)-linux-amd64.gz
 
 clean:
 	rm -rf out
 
-.PHONY: build build-with-rocksdb zip-release clean
+.PHONY: build zip-release clean
 
 #############################
 ##          Lint           ##

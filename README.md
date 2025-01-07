@@ -46,12 +46,12 @@ make build
 
 ### Recommended Database Backend
 
-We recommend to use Pebble. TODO: pebbledb in app.toml doesn't work ([#23133](https://github.com/cosmos/cosmos-sdk/issues/23133))
+We recommend to use Pebble. Note: RocksDB is not supported.
 Make sure you have it set in the config files:
 
 ```bash
 # app.toml / base configuration options
-app-db-backend = "goleveldb"
+app-db-backend = "pebbledb"
 
 # config.toml / base configuration options
 db_backend = "pebbledb"
