@@ -46,12 +46,17 @@ make build
 
 ### Recommended Database Backend
 
-We recommend to use Pebble. Note: RocksDB is not supported.
+We recommend to use:
+
+- pebbledb for CometBFT (config.yaml)
+- goleveldb for App (app.yaml). There is an ongoing issue with PebbleDB in the app. Once it will be solved we will recommend pebbledb for App as well.
+
+Note: RocksDB is not supported.
 Make sure you have it set in the config files:
 
 ```bash
 # app.toml / base configuration options
-app-db-backend = "pebbledb"
+app-db-backend = "goleveldb"
 
 # config.toml / base configuration options
 db_backend = "pebbledb"
