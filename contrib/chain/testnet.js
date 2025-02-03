@@ -28,6 +28,7 @@ function appConfig(cfg) {
 	cfg.store.options["sc-pruning-option"].interval = config.blocksPerHour; // 0=disable prunning
 	// cmd init sets 0.1 by default
 	// cfg.server["minimum-gas-prices"] = "0.08untiv"; // NOTE: in mainnet we will use 0.08 probably
+	// cfg.timeout_commit = "2s";
 
 	return cfg;
 }
