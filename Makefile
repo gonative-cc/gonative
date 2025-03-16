@@ -81,6 +81,7 @@ build: out .git/hooks/pre-commit
 #	@echo "--> ensure dependencies have not been modified"
 #	@go mod verify
 	go build $(BUILD_FLAGS) -mod=readonly -o ./out
+	go build ./client
 
 zip-release:
 	cd out; gzip -k gonative; mv gonative.gz gonative-v$(VERSION)-linux-amd64.gz
