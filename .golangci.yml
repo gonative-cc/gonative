@@ -4,13 +4,6 @@ run:
     - tests/e2e
     - tests/simulation
 
-  govet:
-    # Enable analyzers by name (in addition to default).
-    # Run `go tool vet help` to see all analyzers.
-    # Default: []
-    enable:
-      - fieldalignment
-
 linters:
   enable:
     # - dupl
@@ -25,6 +18,7 @@ linters:
     - dogsled
     - errcheck
     - exportloopref
+    - copyloopvar
     - goconst
     - gocritic
     - gofmt
@@ -49,6 +43,9 @@ linters:
     - usestdlibvars
 
 issues:
+  exclude-dirs:
+    - tests/e2e
+    - tests/simulation
   exclude-rules:
     - path: _test\.go
       linters:
@@ -59,19 +56,24 @@ issues:
   max-same-issues: 50
 
 linters-settings:
+  govet:
+    # Enable analyzers by name (in addition to default).
+    # Run `go tool vet help` to see all analyzers.
+    # Default: []
+    enable:
+      - fieldalignment
   dogsled:
     max-blank-identifiers: 3
   misspell:
     locale: US
   nolintlint:
     allow-unused: false
-    allow-leading-space: true
     require-explanation: false
   revive:
-    confidence: 0
+    confidence: 0.8
     severity: error
-    error-code: 1
-    warning-code: 0
+    errorCode: 2
+    warningCode: 1
     # List of rules to enable explicitly should be a subset of .revive.toml
     # so only critical rules cause CI to fail instead of just generating annotations.
     rules:
@@ -79,22 +81,50 @@ linters-settings:
       - name: context-as-argument
       - name: context-keys-type
       - name: dot-imports
-      - name: empty-block
       - name: error-return
       - name: error-strings
       - name: error-naming
-      - name: errorf
       - name: exported
-      - name: if-return
       - name: increment-decrement
-      - name: indent-error-flow
+      - name: var-naming
+      - name: var-declaration
       - name: range
       - name: receiver-naming
-      # - name: redefines-builtin-id
-      - name: superfluous-else
       - name: time-naming
       - name: unexported-return
+      - name: indent-error-flow
+      - name: errorf
+      - name: empty-block
+      - name: superfluous-else
+      - name: unused-parameter
       - name: unreachable-code
-      # - name: unused-parameter
-      - name: var-declaration
-      - name: var-naming
+      - name: redefines-builtin-id
+
+      - name: if-return
+      - name: early-return
+      - name: identical-branches
+      - name: unconditional-recursion
+      - name: confusing-results
+      - name: duplicated-imports
+      - name: unnecessary-stmt
+
+      - name: atomic
+      - name: bool-literal-in-expr
+      - name: datarace
+
+      - name: range-val-address
+      - name: range-val-in-closure
+      - name: string-of-int
+      - name: struct-tag
+      - name: time-equal
+      - name: waitgroup-by-value
+      - name: defer
+
+      - name: argument-limit
+        arguments: 6
+      - name: cyclomatic
+        arguments: 10
+      - name: function-result-limit
+        arguments: 3
+      - name: max-control-nesting
+        arguments: 4
