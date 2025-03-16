@@ -2,8 +2,10 @@ module github.com/gonative-cc/gonative
 
 go 1.23.4
 
+toolchain go1.24.1
+
 require (
-	cosmossdk.io/api v0.8.0
+	cosmossdk.io/api v0.8.1
 	cosmossdk.io/client/v2 v2.10.0-beta.1
 	cosmossdk.io/core v1.0.0 // main
 	cosmossdk.io/core/testing v0.0.1 // indirect; main
@@ -12,8 +14,8 @@ require (
 	cosmossdk.io/log v1.5.0
 	cosmossdk.io/math v1.5.0
 	cosmossdk.io/runtime/v2 v2.0.0-20241219154748-69025c556666
-	cosmossdk.io/server/v2 v2.0.0-beta.1.0.20250106081242-884a7a51c3c3
-	cosmossdk.io/store/v2 v2.0.0-beta.1.0.20250102174441-3d544c1ef378 // main
+	cosmossdk.io/server/v2 v2.0.0-beta.2
+	cosmossdk.io/store/v2 v2.0.0-beta.1.0.20250113105648-064c9ba6385a // main
 	cosmossdk.io/x/accounts v0.2.0-rc.1
 	cosmossdk.io/x/accounts/defaults/base v0.2.0-rc.1
 	cosmossdk.io/x/accounts/defaults/lockup v0.2.0-rc.1
@@ -41,7 +43,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
-	google.golang.org/protobuf v1.36.1
+	google.golang.org/protobuf v1.36.2
 )
 
 require (
@@ -57,8 +59,8 @@ require (
 	cosmossdk.io/errors v1.0.1 // indirect
 	cosmossdk.io/errors/v2 v2.0.0 // indirect
 	cosmossdk.io/schema v1.0.0 // indirect
-	cosmossdk.io/server/v2/appmanager v1.0.0-beta.1 // indirect; main
-	cosmossdk.io/server/v2/stf v1.0.0-beta.1 // indirect; main
+	cosmossdk.io/server/v2/appmanager v1.0.0-beta.2 // indirect; main
+	cosmossdk.io/server/v2/stf v1.0.0-beta.2 // indirect; main
 	cosmossdk.io/store v1.10.0-rc.1.0.20241218084712-ca559989da43 // indirect; main
 	cosmossdk.io/x/tx v1.0.0 // indirect; main
 	filippo.io/edwards25519 v1.1.0 // indirect
@@ -137,7 +139,7 @@ require (
 	github.com/hashicorp/go-getter v1.7.5 // indirect
 	github.com/hashicorp/go-hclog v1.6.3 // indirect
 	github.com/hashicorp/go-immutable-radix v1.3.1 // indirect
-	github.com/hashicorp/go-metrics v0.5.3 // indirect
+	github.com/hashicorp/go-metrics v0.5.4 // indirect
 	github.com/hashicorp/go-plugin v1.6.2 // indirect
 	github.com/hashicorp/go-safetemp v1.0.0 // indirect
 	github.com/hashicorp/go-version v1.7.0 // indirect
@@ -210,22 +212,22 @@ require (
 	go.opentelemetry.io/otel/trace v1.31.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.12.0 // indirect
-	golang.org/x/crypto v0.31.0 // indirect
+	golang.org/x/crypto v0.32.0 // indirect
 	golang.org/x/exp v0.0.0-20241108190413-2d47ceb2692f // indirect
 	golang.org/x/mod v0.22.0 // indirect
-	golang.org/x/net v0.33.0 // indirect
+	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/oauth2 v0.24.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
-	golang.org/x/term v0.27.0 // indirect
+	golang.org/x/sync v0.10.0
+	golang.org/x/sys v0.29.0 // indirect
+	golang.org/x/term v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.27.0 // indirect
 	google.golang.org/api v0.185.0 // indirect
 	google.golang.org/genproto v0.0.0-20240617180043-68d350f18fd4 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20241015192408-796eee8c2d53 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20241219192143-6b3ec007d9bb // indirect
-	google.golang.org/grpc v1.69.2 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250106144421-5f5ef82da422 // indirect
+	google.golang.org/grpc v1.69.4
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gotest.tools/v3 v3.5.1 // indirect
@@ -234,14 +236,18 @@ require (
 )
 
 require (
-	cosmossdk.io/server/v2/cometbft v1.0.0-beta.1
+	cosmossdk.io/server/v2/cometbft v1.0.0-beta.2
 	cosmossdk.io/tools/confix v0.1.2
 )
 
 require (
+	github.com/aybabtme/uniplot v0.0.0-20151203143629-039c559e5e7e // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
+	github.com/bvinc/go-sqlite-lite v0.6.1 // indirect
+	github.com/cosmos/iavl/v2 v2.0.0-alpha.4 // indirect
 	github.com/creachadair/atomicfile v0.3.1 // indirect
 	github.com/creachadair/tomledit v0.0.24 // indirect
+	github.com/kocubinski/costor-api v1.1.1 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mattn/go-runewidth v0.0.15 // indirect
 	github.com/mdp/qrterminal/v3 v3.2.0 // indirect
